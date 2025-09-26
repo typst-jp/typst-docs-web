@@ -59,7 +59,7 @@ export const Translation: TranslationComponent = (props) => {
 		case "defaultValue":
 			return <Fragment>デフォルト値：</Fragment>;
 		case "stringValues":
-			return <Fragment>使用可能な文字列値：</Fragment>;
+			return <Fragment>使用可能な文字列値</Fragment>;
 		case "showExample":
 			return <Fragment>例を表示</Fragment>;
 		case "tableOfContents":

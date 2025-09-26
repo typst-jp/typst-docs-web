@@ -54,7 +54,7 @@ export const Translation: TranslationComponent = (props) => {
 		case "defaultValue":
 			return <Fragment>Default value:</Fragment>;
 		case "stringValues":
-			return <Fragment>Available string values:</Fragment>;
+			return <Fragment>Available string values</Fragment>;
 		case "showExample":
 			return <Fragment>Show example</Fragment>;
 		case "tableOfContents":
