@@ -32,6 +32,7 @@ export default defineConfig({
 			exclude: [
 				...defaultOptions.exclude,
 				/^\/assets\/.+/,
+				/^.*\.(png|svg|ico|webp|gif|jpe?g)$/,
 				/^\/index\.html$/,
 				// NOTE: @hono/vite-dev-server does not respect the base setting in the Vite configuration.
 				new RegExp(`^${joinPath(basePath, "@")}`),
