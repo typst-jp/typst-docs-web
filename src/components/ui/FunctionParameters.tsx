@@ -62,12 +62,32 @@ export const FunctionParameters: FC<FunctionParametersProps> = ({
 						<HtmlContent html={param.details} />
 					</div>
 
+					{param.default && (
+						<p class="mt-3 text-sm">
+							<span class="font-medium">
+								<Translation translationKey="defaultValue" />
+							</span>{" "}
+							<span class="text-gray-700">
+								<HtmlContent html={param.default} />
+							</span>
+						</p>
+					)}
+
+					{/* Put all collapsible blocks after non-collapsible blocks. */}
+
 					{param.strings.length > 0 && (
-						<div class="mt-3">
-							<h5 class="text-sm font-medium text-gray-700 mb-2">
+						<details
+							class="my-4 folding-example group"
+							// The list of strings can be very long. For example, `page.paper` has 100+ possibilities.
+							open={param.strings.length <= 5}
+						>
+							<summary class="flex items-center gap-1 text-sm font-medium text-blue-600 cursor-pointer hover:text-blue-800">
+								<div class="w-4 h-4 text-gray-400 transform transition-transform duration-200 group-open:rotate-90">
+									<ChevronRightIcon />
+								</div>
 								<Translation translationKey="stringValues" />
-							</h5>
-							<ul class="type-args space-y-2 pl-4">
+							</summary>
+							<ul class="type-args space-y-2">
 								{param.strings.map((string) => (
 									<li key={string.string}>
 										<div class="break-box">
@@ -81,22 +101,11 @@ export const FunctionParameters: FC<FunctionParametersProps> = ({
 									</li>
 								))}
 							</ul>
-						</div>
-					)}
-
-					{param.default && (
-						<p class="mt-3 text-sm">
-							<span class="font-medium">
-								<Translation translationKey="defaultValue" />
-							</span>{" "}
-							<span class="text-gray-700">
-								<HtmlContent html={param.default} />
-							</span>
-						</p>
+						</details>
 					)}
 
 					{param.example && (
-						<details class="mt-4 folding-example group">
+						<details class="my-4 folding-example group">
 							<summary class="flex items-center gap-1 text-sm font-medium text-blue-600 cursor-pointer hover:text-blue-800">
 								<div class="w-4 h-4 text-gray-400 transform transition-transform duration-200 group-open:rotate-90">
 									<ChevronRightIcon />
