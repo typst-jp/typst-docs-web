@@ -62,6 +62,7 @@ type TranslationComponentKey =
 	| "reference"
 	| "openOfficialDocs"
 	| "search"
+	| "globalAttributes"
 	| "argument"
 	| "argumentDescription"
 	| "required"
