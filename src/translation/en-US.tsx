@@ -35,6 +35,9 @@ export const translation: TranslationObject = {
 				return props.kind;
 		}
 	},
+	deprecationWarning: (props: { message: string; until: string }) => {
+		return `${props.message}; it will be removed in Typst ${props.until}`;
+	},
 } as const;
 
 export const Translation: TranslationComponent = (props) => {

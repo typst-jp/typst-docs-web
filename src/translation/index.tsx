@@ -27,6 +27,7 @@ export type TranslationObject = {
 	openSearch: () => string;
 	showInformation: (props: { name: string }) => string;
 	tooltipKind: (props: { kind: TooltipProps["kind"] }) => string;
+	deprecationWarning: (props: { message: string; until: string }) => string;
 };
 
 type TranslationComponentKey =
