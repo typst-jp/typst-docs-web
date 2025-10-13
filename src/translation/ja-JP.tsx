@@ -65,7 +65,11 @@ export const Translation: TranslationComponent = (props) => {
 		case "stringValues":
 			return <Fragment>使用可能な文字列値</Fragment>;
 		case "showExample":
-			return <Fragment>例を表示</Fragment>;
+			return props.title ? (
+				<Fragment>例を表示：{props.title}</Fragment>
+			) : (
+				<Fragment>例を表示</Fragment>
+			);
 		case "tableOfContents":
 			return <Fragment>目次</Fragment>;
 		case "nextPage":

@@ -72,7 +72,6 @@ type TranslationComponentKey =
 	| "positionalDescription"
 	| "defaultValue"
 	| "stringValues"
-	| "showExample"
 	| "settable"
 	| "settableDescription"
 	| "previousPage"
@@ -81,7 +80,8 @@ type TranslationComponentKey =
 
 export type TranslationComponentProps =
 	| { translationKey: TranslationComponentKey }
-	| { translationKey: "definitionOf"; name: string };
+	| { translationKey: "definitionOf"; name: string }
+	| { translationKey: "showExample"; title: string | null };
 
 /**
  * Translation component for UI text, descriptions, and other content to be embedded as JSX.
