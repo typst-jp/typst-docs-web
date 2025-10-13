@@ -20,9 +20,7 @@ jobs:
           - task: vitest
             name: "Run test runner"
             command: "bun run test"
-          - task: build
-            name: "Run Vite build"
-            command: "bun run build"
+    name: Run ${{ matrix.task }}
     steps:
       - name: Checkout the repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -34,3 +32,90 @@ jobs:
         run: bun run fetch-docs-ja-jp
       - name: ${{ matrix.name }}
         run: ${{ matrix.command }}
+
+  build:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        kind: [official]
+        tag:
+          - v0.14.0-rc.1
+          - main.2025-09-19.586b049
+          - v0.13.1
+          # These are `docs-*` tags in https://github.com/typst-community/dev-builds.
+          # To create new tests, trigger the workflow in that repo.
+        base:
+          - "/"
+          - "/docs/"
+        include:
+          - kind: ja-JP
+            tag: latest
+            base: "/docs/"
+    name: |
+      Build for ${{ matrix.kind }} ${{ matrix.tag }} (base: ${{ matrix.base }})
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Setup tools managed by mise
+        uses: jdx/mise-action@13abe502c30c1559a5c37dff303831bab82c9402 # v2.2.3
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Fetch docs assets
+        if: ${{ matrix.kind == 'ja-JP' }}
+        run: bun run fetch-docs-ja-jp
+
+      - name: Setup other tools
+        if: ${{ matrix.kind == 'official' }}
+        uses: taiki-e/install-action@v2
+        with:
+          tool: sd
+      - name: Fetch docs assets
+        if: ${{ matrix.kind == 'official' }}
+        shell: bash
+        run: |
+          set -euxo pipefail
+
+          # Prepare docs.json
+          curl -L https://github.com/typst-community/dev-builds/releases/download/docs-${{ matrix.tag }}/docs.json \
+            -o public/docs.json
+          sd '/DOCS-BASE/' '${{ matrix.base }}' public/docs.json
+
+          # Prepare docs assets
+          curl -LO https://github.com/typst-community/dev-builds/releases/download/docs-${{ matrix.tag }}/docs-assets.zip
+          unzip docs-assets.zip
+          mv assets public/assets
+
+          # Prepare favicon
+          curl -L https://github.com/typst-community/org/raw/main/design/typst-community.icon.png \
+            -o public/favicon.png
+
+          # Configure metadata
+          TAG=${{ matrix.tag }}
+          # Strip the leading ‘v’ or convert to a valid format
+          ${{ startsWith(matrix.tag, 'v') && 'VERSION=${TAG#v}' || 'VERSION="0.dev.${TAG}"' }}
+          cat << EOF > public/metadata.json
+          {
+            "\$schema": "../metadata.schema.json",
+            "language": "en-US",
+            "version": "$VERSION",
+            "typstOfficialUrl": "https://typst.app",
+            "typstOfficialDocsUrl": "https://typst.app/docs/",
+            "githubOrganizationUrl": "https://github.com/typst-community",
+            "githubRepositoryUrl": "https://github.com/typst-community/typst-docs-web",
+            "discordServerUrl": "https://discord.gg/2uDybryKPe",
+            "originUrl": "https://example.com/",
+            "basePath": "${{ matrix.base }}",
+            "displayTranslationStatus": false
+          }
+          EOF
+
+      - name: Run Vite build
+        run: bun run build
+      - uses: actions/upload-artifact@v4
+        # Due to the limit of the artifact naming rule, we upload only one for each group.
+        if: ${{ matrix.base == '/' || matrix.kind == 'ja-jP' }}
+        with:
+          name: dist-${{ matrix.kind }}-${{ matrix.tag }}
+          path: dist
