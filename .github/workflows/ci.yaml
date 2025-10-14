@@ -65,12 +65,6 @@ jobs:
       - name: Fetch docs assets
         if: ${{ matrix.kind == 'ja-JP' }}
         run: bun run fetch-docs-ja-jp
-
-      - name: Setup other tools
-        if: ${{ matrix.kind == 'official' }}
-        uses: taiki-e/install-action@e7ef886cf8f69c25ecef6bbc2858a42e273496ec # v2.62.28
-        with:
-          tool: sd
       - name: Fetch docs assets
         if: ${{ matrix.kind == 'official' }}
         shell: bash
