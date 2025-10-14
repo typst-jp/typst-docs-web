@@ -115,7 +115,7 @@ jobs:
         run: bun run build
       - uses: actions/upload-artifact@v4
         # Due to the limit of the artifact naming rule, we upload only one for each group.
-        if: ${{ matrix.base == '/' || matrix.kind == 'ja-jP' }}
+        if: ${{ matrix.base == '/' || matrix.kind == 'ja-JP' }}
         with:
           name: dist-${{ matrix.kind }}-${{ matrix.tag }}
           path: dist
