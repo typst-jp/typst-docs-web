@@ -68,7 +68,7 @@ jobs:
 
       - name: Setup other tools
         if: ${{ matrix.kind == 'official' }}
-        uses: taiki-e/install-action@v2
+        uses: taiki-e/install-action@e7ef886cf8f69c25ecef6bbc2858a42e273496ec # v2.62.28
         with:
           tool: sd
       - name: Fetch docs assets
@@ -113,7 +113,7 @@ jobs:
 
       - name: Run Vite build
         run: bun run build
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         # Due to the limit of the artifact naming rule, we upload only one for each group.
         if: ${{ matrix.base == '/' || matrix.kind == 'ja-JP' }}
         with:
