@@ -35,7 +35,7 @@ export const loadTranslationStatus = (): TranslationStatusMap => {
  */
 export const saveTranslationStatus = (status: TranslationStatusMap): void => {
 	const json = {
-		$schema: "./translation-status.schema.json",
+		$schema: "../translation-status.schema.json",
 		...status,
 	};
 	fs.writeFileSync(
