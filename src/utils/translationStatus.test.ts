@@ -68,7 +68,7 @@ describe("translationStatus", () => {
 			};
 
 			const expectedJson = {
-				$schema: "./translation-status.schema.json",
+				$schema: "../translation-status.schema.json",
 				...status,
 			};
 
@@ -136,7 +136,7 @@ describe("translationStatus", () => {
 			);
 
 			const status = {
-				$schema: "./translation-status.schema.json",
+				$schema: "../translation-status.schema.json",
 				"/docs/page1/": "translated", // 1.0
 				"/docs/page2/": "translated", // 1.0
 				"/docs/page3/": "partially_translated", // 0.5
@@ -157,7 +157,7 @@ describe("translationStatus", () => {
 			);
 
 			const status = {
-				$schema: "./translation-status.schema.json",
+				$schema: "../translation-status.schema.json",
 				"/docs/page1/": "translated", // 1.0
 				"/docs/page2/": "partially_translated", // 0.5
 				"/docs/original1/": "community", // Excluded
@@ -179,7 +179,7 @@ describe("translationStatus", () => {
 			);
 
 			const status = {
-				$schema: "./translation-status.schema.json",
+				$schema: "../translation-status.schema.json",
 				"/docs/original1/": "community",
 				"/docs/original2/": "community",
 			};
@@ -197,7 +197,7 @@ describe("translationStatus", () => {
 			);
 
 			const status = {
-				$schema: "./translation-status.schema.json",
+				$schema: "../translation-status.schema.json",
 			};
 
 			mockFs.readFileSync.mockReturnValue(JSON.stringify(status));
@@ -213,7 +213,7 @@ describe("translationStatus", () => {
 			);
 
 			const status = {
-				$schema: "./translation-status.schema.json",
+				$schema: "../translation-status.schema.json",
 				"/docs/page1/": "translated",
 			};
 
