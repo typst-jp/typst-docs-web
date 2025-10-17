@@ -92,67 +92,84 @@ samp {
 	}
 }
 
-/* Style code blocks with Monokai theme */
+/*
+Code block styles for Typst Light theme
+
+cf.
+- crates/typst-syntax/src/highlight.rs
+- crates/typst-library/src/text/raw.rs
+*/
 pre code span.typ-comment {
-	color: #88846f;
+	color: #8a8a8a;
 }
 pre code span.typ-escape {
-	color: #f92672;
+	color: #1d6c76;
 }
 pre code span.typ-strong {
-	color: #66d9ef;
 	font-weight: bold;
 }
 pre code span.typ-emph {
-	color: #66d9ef;
 	font-style: italic;
 }
 pre code span.typ-link {
-	color: #e6db74;
 	text-decoration: underline;
+	color: #1d6c76;
 }
 pre code span.typ-raw {
-	color: #fd971f;
+	color: #818181;
 }
 pre code span.typ-label {
-	color: #a6e22e;
+	color: #1d6c76;
 }
 pre code span.typ-ref {
-	color: #a6e22e;
+	color: #1d6c76;
 }
 pre code span.typ-heading {
-	color: #a6e22e;
+	color: #4b69c6;
 	font-weight: bold;
 	text-decoration: underline;
 }
 pre code span.typ-marker {
-	color: #ae81ff;
+	color: #8b41b1;
 }
 pre code span.typ-term {
-	color: #66d9ef;
+	color: #8b41b1;
 	font-weight: bold;
 }
 pre code span.typ-math-delim {
-	color: #f92672;
+	color: #298e0d;
 }
 pre code span.typ-math-op {
-	color: #66d9ef;
+	color: #1d6c76;
 }
 pre code span.typ-key {
-	color: #f92672;
+	color: #d73a49;
 }
 pre code span.typ-num {
-	color: #ae81ff;
+	color: #b60157;
 }
 pre code span.typ-str {
-	color: #e6db74;
+	color: #298e0d;
 }
 pre code span.typ-func {
-	color: #a6e22e;
+	color: #4b69c6;
 }
 pre code span.typ-pol {
-	color: #ae81ff;
+	color: #8b41b1;
+}
+pre code span.typ-punct {
+	color: #6b7280;
+}
+pre code span.typ-op {
+	color: #d73a49;
+}
+pre code span.typ-error {
+	background: #d73a49;
+	color: #ffffff;
+	padding: 0 0.12rem;
+	border-radius: 2px;
 }
 pre {
-	background: #272822;
+	background: #f6f8fa;
+	color: #1f2328;
 }
