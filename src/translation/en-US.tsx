@@ -35,6 +35,9 @@ export const translation: TranslationObject = {
 				return props.kind;
 		}
 	},
+	deprecationWarning: (props: { message: string; until: string }) => {
+		return `${props.message}; it will be removed in Typst ${props.until}`;
+	},
 } as const;
 
 export const Translation: TranslationComponent = (props) => {
@@ -56,7 +59,11 @@ export const Translation: TranslationComponent = (props) => {
 		case "stringValues":
 			return <Fragment>Available string values</Fragment>;
 		case "showExample":
-			return <Fragment>Show example</Fragment>;
+			return props.title ? (
+				<Fragment>Show example: {props.title}</Fragment>
+			) : (
+				<Fragment>Show example</Fragment>
+			);
 		case "tableOfContents":
 			return <Fragment>On this page</Fragment>;
 		case "nextPage":
@@ -138,6 +145,8 @@ export const Translation: TranslationComponent = (props) => {
 					definition name separated by a period.
 				</Fragment>
 			);
+		case "globalAttributes":
+			return <Fragment>Global Attributes</Fragment>;
 		case "argument":
 			return <Fragment>Parameter</Fragment>;
 		case "argumentDescription":
