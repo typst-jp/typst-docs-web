@@ -17,6 +17,7 @@ export const translation: TranslationObject = {
 		const map: Record<TooltipProps["kind"], string> = {
 			element: "Element",
 			contextual: "Contextual",
+			constructor: "Constructor",
 			definitions: "Definitions",
 			parameters: "Parameters",
 			variadic: "Variadic",
@@ -30,14 +31,6 @@ export const translation: TranslationObject = {
 
 export const Translation: TranslationComponent = (props) => {
 	switch (props.translationKey) {
-		case "constructor":
-			return <Fragment>Constructor</Fragment>;
-		case "definitionsOf":
-			return (
-				<Fragment>
-					Definitions of <code>{props.name}</code>
-				</Fragment>
-			);
 		case "search":
 			return <Fragment>Search</Fragment>;
 		case "defaultValue":
@@ -115,6 +108,21 @@ export const Translation: TranslationComponent = (props) => {
 			return (
 				<Fragment>
 					Context functions can only be used when the context is known.
+				</Fragment>
+			);
+		case "constructor":
+			return <Fragment>Constructor</Fragment>;
+		case "constructorDescription":
+			return (
+				<Fragment>
+					If a type has a constructor, you can call it like a function to create
+					a new value of the type.
+				</Fragment>
+			);
+		case "definitionsOf":
+			return (
+				<Fragment>
+					Definitions of <code>{props.name}</code>
 				</Fragment>
 			);
 		case "definitions":

@@ -37,6 +37,7 @@ type TranslationComponentKey =
 	| "contextFunctionDescription"
 	// Section tooltips
 	| "constructor"
+	| "constructorDescription"
 	| "definitions" // See also `definitionsOf`
 	| "definitionsDescription"
 	| "parameters"

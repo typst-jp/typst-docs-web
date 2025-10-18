@@ -22,6 +22,7 @@ export const translation: TranslationObject = {
 		const map: Record<TooltipProps["kind"], string> = {
 			element: "要素関数",
 			contextual: "コンテキスト関数",
+			constructor: "コンストラクタ",
 			definitions: "定義",
 			parameters: "引数",
 			variadic: "可変長引数",
@@ -35,14 +36,6 @@ export const translation: TranslationObject = {
 
 export const Translation: TranslationComponent = (props) => {
 	switch (props.translationKey) {
-		case "constructor":
-			return <Fragment>コンストラクタ</Fragment>;
-		case "definitionsOf":
-			return (
-				<Fragment>
-					<code>{props.name}</code>の定義
-				</Fragment>
-			);
 		case "search":
 			return <Fragment>検索</Fragment>;
 		case "defaultValue":
@@ -118,6 +111,21 @@ export const Translation: TranslationComponent = (props) => {
 			return (
 				<Fragment>
 					コンテキスト関数は、コンテキストが既知の場合にのみ使用できます。
+				</Fragment>
+			);
+
+		case "constructor":
+			return <Fragment>コンストラクタ</Fragment>;
+		case "constructorDescription":
+			return (
+				<Fragment>
+					型がコンストラクタを持っていれば、その型の新しい値を生成する関数のように呼び出すことができます。
+				</Fragment>
+			);
+		case "definitionsOf":
+			return (
+				<Fragment>
+					<code>{props.name}</code>の定義
 				</Fragment>
 			);
 		case "definitions":

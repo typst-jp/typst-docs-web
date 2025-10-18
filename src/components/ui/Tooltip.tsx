@@ -7,6 +7,7 @@ export type TooltipProps = {
 		| "element"
 		| "contextual"
 		// Section tooltips
+		| "constructor"
 		| "definitions"
 		| "parameters"
 		// Parameter tooltips
@@ -39,6 +40,13 @@ const tooltipContent: Record<
 		isShowLabel: true,
 		bgColor: "bg-indigo-50",
 		textColor: "text-indigo-700",
+	},
+	constructor: {
+		label: <Translation translationKey="constructor" />,
+		desc: <Translation translationKey="constructorDescription" />,
+		isShowLabel: false,
+		bgColor: "bg-gray-100",
+		textColor: "text-gray-700",
 	},
 	definitions: {
 		label: <Translation translationKey="definitions" />,
