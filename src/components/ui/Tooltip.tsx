@@ -3,11 +3,13 @@ import { Translation, translation } from "../../translation/";
 import { CloseIcon, HelpCircleIcon } from "../icons";
 
 export type TooltipProps = {
-	kind:
+	kind: // Function tooltips
 		| "element"
 		| "contextual"
+		// Section tooltips
 		| "definitions"
 		| "parameters"
+		// Parameter tooltips
 		| "variadic"
 		| "settable"
 		| "positional"
@@ -39,15 +41,15 @@ const tooltipContent: Record<
 		textColor: "text-indigo-700",
 	},
 	definitions: {
-		label: <Translation translationKey="definitionTooltip" />,
-		desc: <Translation translationKey="definitionTooltipDescription" />,
+		label: <Translation translationKey="definitions" />,
+		desc: <Translation translationKey="definitionsDescription" />,
 		isShowLabel: false,
 		bgColor: "bg-gray-100",
 		textColor: "text-gray-700",
 	},
 	parameters: {
-		label: <Translation translationKey="argument" />,
-		desc: <Translation translationKey="argumentDescription" />,
+		label: <Translation translationKey="parameters" />,
+		desc: <Translation translationKey="parametersDescription" />,
 		isShowLabel: false,
 		bgColor: "bg-gray-100",
 		textColor: "text-gray-700",
